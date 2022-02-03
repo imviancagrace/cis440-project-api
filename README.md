@@ -1,7 +1,3 @@
-# Spring Boot Swagger 3 Example >> 
-
-> [Spring Boot Swagger 3 Example](https://www.techgeeknext.com/spring-boot/spring-boot-swagger3-example/)
-
 ## Run Spring Boot application
 ```
 mvn spring-boot:run
