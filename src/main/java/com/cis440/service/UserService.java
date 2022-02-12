@@ -1,6 +1,7 @@
 package com.cis440.service;
 
 import com.cis440.model.User;
+import com.cis440.model.Post;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,4 +30,47 @@ public class UserService {
         return users.stream().filter(user -> user.getRole().equalsIgnoreCase(role)).collect(Collectors.toList());
 
     }
+
+    // Added code...
+    List<Post> posts = new ArrayList<>();
+    {
+        posts.add(new Post(0, "SampleTitle", 00, "SampleContent", 1, new User(1,"TechGeekNext-User1", "ADMIN", "user1@test.com", "test", "test12")));
+    }
+
+    public List<Post> getPosts()
+    {
+        return posts;
+    }
+
+    public Post getPostById(int id)
+    {
+        return posts.stream().filter(post -> post.getId() == id).collect(Collectors.toList()).get(0);
+    }
+
+    public Post getPostByParentId(int parentId)
+    {
+        return posts.stream().filter(post -> post.getParentId() == id).collect(Collectors.toList()).get(0);
+    }
+
+    public List<Post> getPostByRating(int rating)
+    {
+        return posts.stream().filter(post -> post.getRating() == rating).collect(Collectors.toList());
+    }
+
+    public Post getPostByTitle(String title)
+    {
+        return posts.stream().filter(post -> post.getTitle().equalsIgnoreCase(title)).collect(Collectors.toList()).get(0);
+    }
+
+    public Post getPostByContent(String content)
+    {
+        return posts.stream().filter(post -> post.getContent().equalsIgnoreCase(content)).collect(Collectors.toList()).get(0);
+    }
+
+    public List<Post> getPostByOwner(User owner)
+    {
+        return posts.stream().filter(post -> post.getOwner().getName().equalsIgnoreCase(owner.getName())).collect(Collectors.toList());
+    }
+
 }
+

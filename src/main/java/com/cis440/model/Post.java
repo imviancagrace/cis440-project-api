@@ -19,7 +19,7 @@ public class Post {
         this.owner = owner;
     }
 
-    public int id() {
+    public int getId() {
 		return id;
 	}
 
@@ -27,7 +27,7 @@ public class Post {
 		this.id = id;
 	}
 
-    public String title() {
+    public String getTitle() {
 		return title;
 	}
 
@@ -35,7 +35,7 @@ public class Post {
 		this.title = title;
 	}
 
-    public int parentId() {
+    public int getParentId() {
 		return parentId;
 	}
 
@@ -43,7 +43,7 @@ public class Post {
 		this.parentId = parentId;
 	}
 
-    public String content() {
+    public String getContent() {
 		return content;
 	}
 
@@ -51,7 +51,7 @@ public class Post {
 		this.content = content;
 	}
 
-    public int rating() {
+    public int getRating() {
 		return rating;
 	}
 
@@ -59,7 +59,7 @@ public class Post {
 		this.rating = rating;
 	}
 
-    public User owner() {
+    public User getOwner() {
 		return owner;
 	}
 
