@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 public class UserService {
     List<User> users = new ArrayList<>();
     {
-        users.add(new User(1,"TechGeekNext-User1", "ADMIN", "user1@test.com", "test", "test12"));
-        users.add(new User(2,"TechGeekNext-User2", "SUPERVISOR", "user2@test.com", "test1", "test12"));
-        users.add(new User(3,"TechGeekNext-User3", "USER", "user3@test.com", "test2", "test12"));
-        users.add(new User(4,"TechGeekNext-User4", "USER", "user4@test.com", "test3", "test12"));
+        users.add(new User(100,"TechGeekNext-User1", "ADMIN", "user1@test.com", "test", "test12"));
+        users.add(new User(101,"TechGeekNext-User2", "SUPERVISOR", "user2@test.com", "test1", "test12"));
+        users.add(new User(103,"TechGeekNext-User3", "USER", "user3@test.com", "test2", "test12"));
+        users.add(new User(104,"TechGeekNext-User4", "USER", "user4@test.com", "test3", "test12"));
     }
 
     public List<User> getUsers(){
@@ -30,47 +30,5 @@ public class UserService {
         return users.stream().filter(user -> user.getRole().equalsIgnoreCase(role)).collect(Collectors.toList());
 
     }
-
-    // Added code...
-    List<Post> posts = new ArrayList<>();
-    {
-        posts.add(new Post(0, "SampleTitle", 00, "SampleContent", 1, new User(1,"TechGeekNext-User1", "ADMIN", "user1@test.com", "test", "test12")));
-    }
-
-    public List<Post> getPosts()
-    {
-        return posts;
-    }
-
-    public Post getPostById(int id)
-    {
-        return posts.stream().filter(post -> post.getId() == id).collect(Collectors.toList()).get(0);
-    }
-
-    public Post getPostByParentId(int parentId)
-    {
-        return posts.stream().filter(post -> post.getParentId() == id).collect(Collectors.toList()).get(0);
-    }
-
-    public List<Post> getPostByRating(int rating)
-    {
-        return posts.stream().filter(post -> post.getRating() == rating).collect(Collectors.toList());
-    }
-
-    public Post getPostByTitle(String title)
-    {
-        return posts.stream().filter(post -> post.getTitle().equalsIgnoreCase(title)).collect(Collectors.toList()).get(0);
-    }
-
-    public Post getPostByContent(String content)
-    {
-        return posts.stream().filter(post -> post.getContent().equalsIgnoreCase(content)).collect(Collectors.toList()).get(0);
-    }
-
-    public List<Post> getPostByOwner(User owner)
-    {
-        return posts.stream().filter(post -> post.getOwner().getName().equalsIgnoreCase(owner.getName())).collect(Collectors.toList());
-    }
-
 }
 

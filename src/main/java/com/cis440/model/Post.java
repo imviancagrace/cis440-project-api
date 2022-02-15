@@ -7,16 +7,16 @@ public class Post {
     private int parentId;
     private String content;
     private int rating;
-    private User owner;
+    private int ownerId;
 
-    public Post(int id, String title, int parentId, String content, int rating, User owner)
+    public Post(int id, String title, int parentId, String content, int rating, int ownerId)
     {
         this.id = id;
         this.title = title;
         this.parentId = parentId;
         this.content = content;
         this.rating = rating;
-        this.owner = owner;
+        this.ownerId = ownerId;
     }
 
     public int getId() {
@@ -59,12 +59,12 @@ public class Post {
 		this.rating = rating;
 	}
 
-    public User getOwner() {
-		return owner;
+    public int getOwnerId() {
+		return ownerId;
 	}
 
-	public void setOwner(User owner) {
-		this.owner = owner;
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId;
 	}
 
 }
