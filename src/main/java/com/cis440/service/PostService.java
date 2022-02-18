@@ -18,6 +18,10 @@ public class PostService {
         posts.add(new Post(4, "Test Post Child of ID 2", 2, "This is the content of post id 2's child", 1, 104));
     }
 
+    public void updateRating(int id, int rating){
+        posts.stream().filter(p -> p.getId() == id).collect(Collectors.toList()).get(0).setRating(rating);
+    }
+
     public List<Post> getPosts()
     {
         return posts;

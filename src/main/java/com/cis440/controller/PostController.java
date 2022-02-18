@@ -42,4 +42,7 @@ public class PostController {
 	@DeleteMapping(value = "/deletePost/{id}", produces = "application/json")
 	public void deletePost(@PathVariable(value = "id") int id) { postService.deletePost(id); }
 
+	@PutMapping(value = "/updateRating/{id}", produces = "application/json")
+	public void deletePost(@PathVariable(value = "id") int id, @RequestParam(value = "rating") int rating) { postService.updateRating(id, rating); }
+
 }
