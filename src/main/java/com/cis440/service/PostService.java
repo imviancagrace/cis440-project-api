@@ -27,6 +27,10 @@ public class PostService {
         return posts;
     }
 
+    public void createPost(Post post){
+        posts.add(post);
+    }
+
     public void deletePost(int id){
         posts.removeIf(p -> p.getId() == id);
     }
