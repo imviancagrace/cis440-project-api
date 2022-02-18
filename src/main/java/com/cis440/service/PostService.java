@@ -23,6 +23,10 @@ public class PostService {
         return posts;
     }
 
+    public void deletePost(int id){
+        posts.removeIf(p -> p.getId() == id);
+    }
+
     public Post getPostById(int id)
     {
         return posts.stream().filter(post -> post.getId() == id).collect(Collectors.toList()).get(0);

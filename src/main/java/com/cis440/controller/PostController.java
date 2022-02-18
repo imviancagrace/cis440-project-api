@@ -3,10 +3,7 @@ package com.cis440.controller;
 import com.cis440.model.Post;
 import com.cis440.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,13 +24,13 @@ public class PostController {
 		return postService.getPostById(id);
 	}
 
-	@GetMapping(value = "/getPost/parentId/{parentId}", produces= "application/json")
+	@GetMapping(value = "/getPosts/parentId/{parentId}", produces= "application/json")
 	public List<Post> getPostByParentId(@PathVariable(value = "parentId") int parentId)
 	{
 		return postService.getPostsByParentId(parentId);
 	}
 
-	@GetMapping(value = "/getPost/ownerId/{ownerId}", produces= "application/json")
+	@GetMapping(value = "/getPosts/ownerId/{ownerId}", produces= "application/json")
 	public List<Post> getPostsByOwner(@PathVariable(value = "ownerId") int ownerId)
 	{
 		return postService.getPostByOwnerId(ownerId);
@@ -42,5 +39,7 @@ public class PostController {
 	@GetMapping(value = "/getPosts", produces= "application/json")
 	public List<Post> getPosts() { return postService.getPosts(); }
 
+	@DeleteMapping(value = "/deletePost/{id}", produces = "application/json")
+	public void deletePost(@PathVariable(value = "id") int id) { postService.deletePost(id); }
 
 }
