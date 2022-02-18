@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 public class UserService {
     List<User> users = new ArrayList<>();
     {
-        users.add(new User(100,"TechGeekNext-User1", "ADMIN", "user1@test.com", "test", "test12"));
-        users.add(new User(101,"TechGeekNext-User2", "SUPERVISOR", "user2@test.com", "test1", "test12"));
-        users.add(new User(103,"TechGeekNext-User3", "USER", "user3@test.com", "test2", "test12"));
-        users.add(new User(104,"TechGeekNext-User4", "USER", "user4@test.com", "test3", "test12"));
+        users.add(new User(100,"TechGeekNext-User1", "ADMIN", "IT", "user1@test.com", "test", "test12"));
+        users.add(new User(101,"TechGeekNext-User2", "SUPERVISOR","IT", "user2@test.com", "test1", "test12"));
+        users.add(new User(103,"TechGeekNext-User3", "USER","IT", "user3@test.com", "test2", "test12"));
+        users.add(new User(104,"TechGeekNext-User4", "USER","IT", "user4@test.com", "test3", "test12"));
     }
 
     public List<User> getUsers(){
