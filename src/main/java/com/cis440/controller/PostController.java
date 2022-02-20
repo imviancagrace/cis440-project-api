@@ -1,5 +1,6 @@
 package com.cis440.controller;
 
+import com.cis440.constant.SortOrder;
 import com.cis440.model.Post;
 import com.cis440.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,6 +17,13 @@ public class PostController {
 	@Autowired
 	public void setPostService(PostService postService) {
 		this.postService = postService;
+	}
+
+	@GetMapping(value = "/getPosts", produces= "application/json")
+	@Operation(summary = "Get All Posts", description = "Returns all posts\nYou can pass request parameters for the ordering of rating and date.\nFor Example, ?sortBy=rating&sortOrder=descending")
+	public List<Post> getPosts(@RequestParam(required = false) String sortBy, @RequestParam(required = false) SortOrder sortOrder)
+	{
+		return postService.getPosts(sortBy, sortOrder);
 	}
 
 	@GetMapping(value = "/getPost/{id}", produces= "application/json")
@@ -38,10 +46,6 @@ public class PostController {
 		return postService.getPostByOwnerId(ownerId);
 	}
 
-	@GetMapping(value = "/getPosts", produces= "application/json")
-	@Operation(summary = "Get All Posts", description = "Returns all posts")
-	public List<Post> getPosts() { return postService.getPosts(); }
-
 	@DeleteMapping(value = "/deletePost/{id}", produces = "application/json")
 	@Operation(summary = "Delete Post By ID", description = "Does not return anything but instead " +
 			"deletes a post by given ID")
@@ -50,12 +54,12 @@ public class PostController {
 	@PutMapping(value = "/updateRating/{id}", produces = "application/json")
 	@Operation(summary = "Update Post Rating By ID", description = "Does not return anything but instead " +
 			"updates a post's rating by ID. Requires rating to be sent as a request param eg ?rating=2")
-	public void deletePost(@PathVariable(value = "id") int id, @RequestParam(value = "rating") int rating)
+	public void updateRating(@PathVariable(value = "id") int id, @RequestParam(value = "rating") int rating)
 	{
 		postService.updateRating(id, rating);
 	}
 
 	@PostMapping(value = "/addPost", produces = "application/json")
-	public void deletePost(@RequestBody Post post) { postService.createPost(post); }
+	public void addPost(@RequestBody Post post) { postService.createPost(post); }
 
 }
