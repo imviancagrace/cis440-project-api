@@ -1,21 +1,16 @@
-package com.cis440.model;
+package com.cis440.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @AllArgsConstructor
 @Getter
 @Setter
-public class Post {
-    private Integer id;
+public class PostRequest {
     private String title;
-    private Integer parentId;
     private String content;
     private Integer rating;
     private Integer ownerId;
-    private LocalDateTime date;
     private String department;
 }

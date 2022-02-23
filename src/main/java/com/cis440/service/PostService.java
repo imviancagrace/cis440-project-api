@@ -2,6 +2,7 @@ package com.cis440.service;
 
 import com.cis440.constant.SortOrder;
 import com.cis440.model.Post;
+import com.cis440.model.request.PostRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -9,16 +10,17 @@ import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
 public class PostService {
     List<Post> posts = new ArrayList<>();
     {
-        posts.add(new Post(1, "Test Post", -1, "This is the content", 1, 100, LocalDateTime.now().minusHours(5)));
-        posts.add(new Post(2, "Test Post Child", 1, "This is the content of child", 5, 100, LocalDateTime.now().minusHours(4)));
-        posts.add(new Post(3, "Test Post Child #2", 1, "This is the content of second child", 2, 100, LocalDateTime.now().minusHours(3)));
-        posts.add(new Post(4, "Test Post Child of ID 2", 2, "This is the content of post id 2's child", 1, 104, LocalDateTime.now().minusHours(1)));
+        posts.add(new Post(1, "Test Post", -1, "This is the content", 1, 100, LocalDateTime.now().minusHours(5), "IT"));
+        posts.add(new Post(2, "Test Post Child", 1, "This is the content of child", 5, 100, LocalDateTime.now().minusHours(4), "IT"));
+        posts.add(new Post(3, "Test Post Child #2", 1, "This is the content of second child", 2, 100, LocalDateTime.now().minusHours(3), "IT"));
+        posts.add(new Post(4, "Test Post Child of ID 2", 2, "This is the content of post id 2's child", 1, 104, LocalDateTime.now().minusHours(1), "IT"));
     }
 
     public void updateRating(int id, int rating){
@@ -45,8 +47,18 @@ public class PostService {
         return posts;
     }
 
-    public void createPost(Post post){
-        posts.add(post);
+    private int computeRandomId(){
+        List<Integer> ids = posts.stream().map(Post::getId).collect(Collectors.toList());
+        int id = 1;
+        while(ids.contains(id))
+            id = Math.abs(new Random().nextInt());
+        return id;
+    }
+
+    public void createPost(PostRequest post){
+        Post temp = new Post(computeRandomId(), post.getTitle(), -1, post.getContent(),
+                post.getRating(), post.getOwnerId(), LocalDateTime.now(),post.getDepartment() );
+        posts.add(temp);
     }
 
     public void deletePost(int id){
@@ -66,6 +78,11 @@ public class PostService {
     public List<Post> getPostByOwnerId(int ownerId)
     {
         return posts.stream().filter(post -> post.getOwnerId() == ownerId).collect(Collectors.toList());
+    }
+
+    public List<Post> getPostByDepartment(String department)
+    {
+        return posts.stream().filter(post -> post.getDepartment().equalsIgnoreCase(department)).collect(Collectors.toList());
     }
 
 }
