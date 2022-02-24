@@ -1,5 +1,6 @@
 package com.cis440.model;
 
+import com.cis440.constant.Department;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,5 +18,5 @@ public class Post {
     private Integer rating;
     private Integer ownerId;
     private LocalDateTime date;
-    private String department;
+    private Department department;
 }

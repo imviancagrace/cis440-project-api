@@ -1,5 +1,6 @@
 package com.cis440.controller;
 
+import com.cis440.constant.Department;
 import com.cis440.constant.SortOrder;
 import com.cis440.model.Post;
 import com.cis440.model.request.PostRequest;
@@ -7,6 +8,8 @@ import com.cis440.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -61,11 +64,11 @@ public class PostController {
 	}
 
 	@PostMapping(value = "/addPost", produces = "application/json")
-	public void addPost(@RequestBody PostRequest post) { postService.createPost(post); }
+	public void addPost(@RequestBody @Valid PostRequest post) { postService.createPost(post); }
 
 	@GetMapping(value = "/getPosts/department/{department}", produces= "application/json")
 	@Operation(summary = "Get All Posts From Owner ID", description = "Returns all posts from a given department")
-	public List<Post> getPostsByOwner(@PathVariable(value = "department") String department)
+	public List<Post> getPostsByOwner(@PathVariable(value = "department") Department department)
 	{
 		return postService.getPostByDepartment(department);
 	}

@@ -1,5 +1,6 @@
 package com.cis440.service;
 
+import com.cis440.constant.Department;
 import com.cis440.constant.SortOrder;
 import com.cis440.model.Post;
 import com.cis440.model.request.PostRequest;
@@ -17,10 +18,10 @@ import java.util.stream.Collectors;
 public class PostService {
     List<Post> posts = new ArrayList<>();
     {
-        posts.add(new Post(1, "Test Post", -1, "This is the content", 1, 100, LocalDateTime.now().minusHours(5), "IT"));
-        posts.add(new Post(2, "Test Post Child", 1, "This is the content of child", 5, 100, LocalDateTime.now().minusHours(4), "IT"));
-        posts.add(new Post(3, "Test Post Child #2", 1, "This is the content of second child", 2, 100, LocalDateTime.now().minusHours(3), "IT"));
-        posts.add(new Post(4, "Test Post Child of ID 2", 2, "This is the content of post id 2's child", 1, 104, LocalDateTime.now().minusHours(1), "IT"));
+        posts.add(new Post(1, "Test Post", -1, "This is the content", 1, 100, LocalDateTime.now().minusHours(5), Department.IT));
+        posts.add(new Post(2, "Test Post Child", 1, "This is the content of child", 5, 100, LocalDateTime.now().minusHours(4), Department.HR));
+        posts.add(new Post(3, "Test Post Child #2", 1, "This is the content of second child", 2, 100, LocalDateTime.now().minusHours(3), Department.FINANCE));
+        posts.add(new Post(4, "Test Post Child of ID 2", 2, "This is the content of post id 2's child", 1, 104, LocalDateTime.now().minusHours(1), Department.MARKETING));
     }
 
     public void updateRating(int id, int rating){
@@ -80,9 +81,9 @@ public class PostService {
         return posts.stream().filter(post -> post.getOwnerId() == ownerId).collect(Collectors.toList());
     }
 
-    public List<Post> getPostByDepartment(String department)
+    public List<Post> getPostByDepartment(Department department)
     {
-        return posts.stream().filter(post -> post.getDepartment().equalsIgnoreCase(department)).collect(Collectors.toList());
+        return posts.stream().filter(post -> post.getDepartment() == department).collect(Collectors.toList());
     }
 
 }
